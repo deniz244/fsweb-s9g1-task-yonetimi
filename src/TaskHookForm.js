@@ -3,6 +3,8 @@ import { nanoid } from "nanoid";
 
 import { useForm } from "react-hook-form";
 
+import { toast } from "react-toastify";
+
 export default function TaskHookForm({ kisiler, submitFn }) {
   const {
     register,
@@ -19,6 +21,7 @@ export default function TaskHookForm({ kisiler, submitFn }) {
       status: "yapılacak",
     });
     reset();
+    toast.success(`${data.title} eklendi!!`);
   }
 
   return (

@@ -6,6 +6,8 @@ import TaskHookForm from "./TaskHookForm";
 import PeopleForm from "./PeopleForm";
 import { initialTasks, initialTeam } from "./data";
 
+import { toast } from "react-toastify";
+
 function App() {
   const [tasks, setTasks] = useState(initialTasks);
   const [team, setTeam] = useState(initialTeam);
@@ -25,6 +27,8 @@ function App() {
     const targetTask = newTasks.find((t) => t.id === id);
     targetTask.status = "yapıldı";
     setTasks(newTasks);
+
+    toast.success(`${targetTask.title} tamamlandı!!`);
   }
 
   return (
