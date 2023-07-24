@@ -6,21 +6,25 @@ import TaskHookForm from "./TaskHookForm";
 import PeopleForm from "./PeopleForm";
 import { initialTasks, initialTeam } from "./data";
 
-
 function App() {
   const [tasks, setTasks] = useState(initialTasks);
   const [team, setTeam] = useState(initialTeam);
 
   function handleTaskSubmit(yeniTask) {
-    setTasks([yeniTask, ...tasks])
+    setTasks([yeniTask, ...tasks]);
   }
 
   function handlePeopleSubmit(yeniKisi) {
-    setTeam([...team, yeniKisi])
+    setTeam([...team, yeniKisi]);
   }
 
   function handleComplete(id) {
-    console.log("tamamlama fonksiyonunu buraya yazın")
+    console.log("gelen id", id);
+
+    const newTasks = [...tasks];
+    const targetTask = newTasks.find((t) => t.id === id);
+    targetTask.status = "yapıldı";
+    setTasks(newTasks);
   }
 
   return (
@@ -28,7 +32,7 @@ function App() {
       <div className="formColumn">
         <div className="form-container">
           <h2>Yeni Task</h2>
-          {/* <TaskForm kisiler={team} submitFn={handleTaskSubmit} /> */}
+          {/*<TaskForm kisiler={team} submitFn={handleTaskSubmit} /> */}
           <TaskHookForm kisiler={team} submitFn={handleTaskSubmit} />
         </div>
 
@@ -59,7 +63,6 @@ function App() {
           </div>
         </div>
       </div>
-
     </div>
   );
 }
